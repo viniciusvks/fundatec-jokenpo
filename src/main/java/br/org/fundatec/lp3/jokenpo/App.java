@@ -2,73 +2,89 @@ package br.org.fundatec.lp3.jokenpo;
 
 import java.util.Scanner;
 
-/**
- * Hello world!
- *
- */
-public class App 
-{
+public class App {
+
 	public static void main(String[] args) {
 
         Scanner scanner = new Scanner(System.in);
         System.out.println("|--jokenpo--|");
-        
-        Jogada primeraJogada;
-        Jogada segundaJogada;
+        int jogada1;
+        int jogada2;
 
-        Jogo jogo = new Jogo();
+        boolean jogada1Valida = false;
+        boolean jogada2Valida = false;
 
         do {
 
             System.out.println("> ESCOLHA UMA JOGADA:");
             System.out.println(">| PEDRA - 0 | PAPEL - 1 | TESOURA - 2 |");
-            
-            System.out.print("> Jogador 1: ");            
-            primeraJogada = Jogada.comValor(scanner.nextInt());
+            System.out.print("> Jogador 1: ");
+            jogada1 = scanner.nextInt();
             System.out.print("> Jogador 2: ");
-            segundaJogada = Jogada.comValor(scanner.nextInt());
+            jogada2 = scanner.nextInt();
 
-            if(jogadaEhValida(primeraJogada) && jogadaEhValida(segundaJogada)) {
-            	
-            	Resultado resultado = jogo.executar(primeraJogada, segundaJogada);
-            	System.out.println(buildMessage(resultado, primeraJogada, segundaJogada));
-            	
-            } else {
-            	
-            	System.out.println("Jogada inválida!");
-            	
+            if(jogada1 == 0 || jogada1 == 1 || jogada1 == 2) {
+                jogada1Valida = true;
             }
 
-        } while(!jogadaEhValida(primeraJogada) || !jogadaEhValida(segundaJogada));
+            if(jogada2 == 0 || jogada2 == 1 || jogada2 == 2) {
+                jogada2Valida = true;
+            }
+
+            if(!jogada1Valida || !jogada2Valida) {
+
+                System.out.println("Jogada invalida!");
+
+            } else {
+
+                String nomeJogada1 = getNomeJogada(jogada1);
+                String nomeJogada2 = getNomeJogada(jogada2);
+
+                String resultado = "Resultado Invalido";
+
+                if(nomeJogada1 == nomeJogada2) {
+                    resultado = "Empate";
+                } else if(nomeJogada1 == "PEDRA" && nomeJogada2 == "PAPEL") {
+                    resultado = "Papel venceu!";
+                }
+                 else if(nomeJogada1 == "PEDRA" && nomeJogada2 == "TESOURA") {
+                    resultado = "Pedra venceu!";
+                }
+                 else if(nomeJogada1 == "PAPEL" && nomeJogada2 == "PEDRA") {
+                    resultado = "Papel venceu!";
+                }
+                 else if(nomeJogada1 == "PAPEL" && nomeJogada2 == "TESOURA") {
+                    resultado = "Tesoura venceu!";
+                }
+                 else if(nomeJogada1 == "TESOURA" && nomeJogada2 == "PEDRA") {
+                    resultado = "Pedra venceu!";
+                }
+                 else if(nomeJogada1 == "TESOURA" && nomeJogada2 == "PAPEL") {
+                    resultado = "Tesoura venceu!";
+                }
+
+                System.out.println(resultado);
+            }
+
+        } while(!jogada1Valida || !jogada2Valida);
         
         scanner.close();
 
     }
 
-    private static boolean jogadaEhValida(Jogada jogada) {
+    private static String getNomeJogada(int jogada) {
 
-        return jogada != null;
+        String nomeJogada = "Jogada invalida!";
 
-    }
-
-    private static String buildMessage(Resultado resultado, Jogada primeiraJogada, Jogada segundaJogada) {
-
-        String message = "Undefined";
-
-        switch (resultado) {
-
-            case VITORIA:
-                message = primeiraJogada+" venceu";
-                break;
-            case DERROTA:
-                message = segundaJogada+" venceu";
-                break;
-            case EMPATE:
-                message = "Empate";
-                break;
+        if(jogada == 0) {
+            nomeJogada = "PEDRA";
+        } else if(jogada == 1) {
+            nomeJogada = "PAPEL";
+        } else {
+            nomeJogada = "TESOURA";
         }
 
-        return message;
+        return nomeJogada;
 
     }
 }
