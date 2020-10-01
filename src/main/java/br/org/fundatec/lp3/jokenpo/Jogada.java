@@ -17,10 +17,11 @@ public enum Jogada {
 	}
 	
 	public static Jogada comValor(int valor) {
-		
+
 		Jogada[] jogadas = values();
 		
 		for(Jogada jogada : jogadas) {
+
 			if(jogada.getValor() == valor) {
 				return jogada;
 			}
