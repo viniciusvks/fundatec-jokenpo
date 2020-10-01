@@ -4,48 +4,35 @@ public class Jogo {
 
 	public String executar(int jogada1, int jogada2)
 	{
-		
-		boolean jogada1Valida = false;
-        boolean jogada2Valida = false;
-	
-        if(jogada1 == 0 || jogada1 == 1 || jogada1 == 2) {
-            jogada1Valida = true;
-        }
-
-        if(jogada2 == 0 || jogada2 == 1 || jogada2 == 2) {
-            jogada2Valida = true;
-        }
+        Jogada primeiraJogada = Jogada.comValor(jogada1);
+        Jogada segundaJogada = Jogada.comValor(jogada2);
         
         String resultado = "Resultado Invalido";
 
-        if(!jogada1Valida || !jogada2Valida) {
+        if(primeiraJogada == null || segundaJogada == null) {
 
             return "Jogada invalida!";
 
         } else {
 
-            String nomeJogada1 = getNomeJogada(jogada1);
-            String nomeJogada2 = getNomeJogada(jogada2);
-            
-
-            if(nomeJogada1 == nomeJogada2) {
+            if(primeiraJogada == segundaJogada) {
             	resultado = "Empate";
-            } else if(nomeJogada1 == "PEDRA" && nomeJogada2 == "PAPEL") {
+            } else if(primeiraJogada == Jogada.PEDRA && segundaJogada == Jogada.PAPEL) {
             	resultado = "Papel venceu!";
             }
-             else if(nomeJogada1 == "PEDRA" && nomeJogada2 == "TESOURA") {
+             else if(primeiraJogada == Jogada.PEDRA && segundaJogada == Jogada.TESOURA) {
             	 resultado = "Pedra venceu!";
             }
-             else if(nomeJogada1 == "PAPEL" && nomeJogada2 == "PEDRA") {
+             else if(primeiraJogada == Jogada.PAPEL && segundaJogada == Jogada.PEDRA) {
             	 resultado = "Papel venceu!";
             }
-             else if(nomeJogada1 == "PAPEL" && nomeJogada2 == "TESOURA") {
+             else if(primeiraJogada == Jogada.PAPEL && segundaJogada == Jogada.TESOURA) {
             	 resultado = "Tesoura venceu!";
             }
-             else if(nomeJogada1 == "TESOURA" && nomeJogada2 == "PEDRA") {
+             else if(primeiraJogada == Jogada.TESOURA && segundaJogada == Jogada.PEDRA) {
             	 resultado = "Pedra venceu!";
             }
-             else if(nomeJogada1 == "TESOURA" && nomeJogada2 == "PAPEL") {
+             else if(primeiraJogada == Jogada.TESOURA && segundaJogada == Jogada.PAPEL) {
             	 resultado = "Tesoura venceu!";
             }
             
@@ -54,21 +41,5 @@ public class Jogo {
 		return resultado;
                
 	}
-        
-    private String getNomeJogada(int jogada) {
-
-        String nomeJogada = "Jogada invalida!";
-
-        if(jogada == 0) {
-            nomeJogada = "PEDRA";
-        } else if(jogada == 1) {
-            nomeJogada = "PAPEL";
-        } else {
-            nomeJogada = "TESOURA";
-        }
-
-        return nomeJogada;
-
-    }
 	
 }
