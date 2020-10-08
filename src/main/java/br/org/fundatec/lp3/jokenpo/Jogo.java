@@ -1,45 +1,44 @@
 package br.org.fundatec.lp3.jokenpo;
 
 public class Jogo {
+	
+	private Resultado[][] resultados;
+	
+	public Jogo() {
+		inicializaRegras();
+	}
+	
+	public static void exemplo() {}
 
-	public String executar(int jogada1, int jogada2)
-	{
-        Jogada primeiraJogada = Jogada.comValor(jogada1);
-        Jogada segundaJogada = Jogada.comValor(jogada2);
-        
-        String resultado = "Resultado Invalido";
+	public Resultado executar(Jogada primeiraJogada, Jogada segundaJogada) {
 
         if(primeiraJogada == null || segundaJogada == null) {
 
-            return "Jogada invalida!";
+            return null;
 
         } else {
 
-            if(primeiraJogada == segundaJogada) {
-            	resultado = "Empate";
-            } else if(primeiraJogada == Jogada.PEDRA && segundaJogada == Jogada.PAPEL) {
-            	resultado = "Papel venceu!";
-            }
-             else if(primeiraJogada == Jogada.PEDRA && segundaJogada == Jogada.TESOURA) {
-            	 resultado = "Pedra venceu!";
-            }
-             else if(primeiraJogada == Jogada.PAPEL && segundaJogada == Jogada.PEDRA) {
-            	 resultado = "Papel venceu!";
-            }
-             else if(primeiraJogada == Jogada.PAPEL && segundaJogada == Jogada.TESOURA) {
-            	 resultado = "Tesoura venceu!";
-            }
-             else if(primeiraJogada == Jogada.TESOURA && segundaJogada == Jogada.PEDRA) {
-            	 resultado = "Pedra venceu!";
-            }
-             else if(primeiraJogada == Jogada.TESOURA && segundaJogada == Jogada.PAPEL) {
-            	 resultado = "Tesoura venceu!";
+            if(primeiraJogada == segundaJogada) {            	
+            	return Resultado.EMPATE;
+            } else {
+            	return resultados[primeiraJogada.getValor()][segundaJogada.getValor()];
             }
             
         }
-        
-		return resultado;
                
+	}
+	
+	private void inicializaRegras() {
+		
+		resultados = new Resultado[3][3];
+		
+		resultados[Jogada.PEDRA.getValor()][Jogada.PAPEL.getValor()] = Resultado.DERROTA;
+        resultados[Jogada.PEDRA.getValor()][Jogada.TESOURA.getValor()] = Resultado.VITORIA;
+        resultados[Jogada.PAPEL.getValor()][Jogada.PEDRA.getValor()] = Resultado.VITORIA;
+        resultados[Jogada.PAPEL.getValor()][Jogada.TESOURA.getValor()] = Resultado.DERROTA;
+        resultados[Jogada.TESOURA.getValor()][Jogada.PEDRA.getValor()] = Resultado.DERROTA;
+        resultados[Jogada.TESOURA.getValor()][Jogada.PAPEL.getValor()] = Resultado.VITORIA;
+		
 	}
 	
 }

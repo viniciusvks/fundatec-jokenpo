@@ -8,30 +8,53 @@ public class App {
 
         Scanner scanner = new Scanner(System.in);
         System.out.println("|--jokenpo--|");
-        int jogada1;
-        int jogada2;
-    
-        String resultado;
+        
+        Resultado resultado = null;
         
         do {
 
             System.out.println("> ESCOLHA UMA JOGADA:");
             System.out.println(">| PEDRA - 0 | PAPEL - 1 | TESOURA - 2 |");
             System.out.print("> Jogador 1: ");
-            jogada1 = scanner.nextInt();
+            int jogada1 = scanner.nextInt();
             System.out.print("> Jogador 2: ");
-            jogada2 = scanner.nextInt();
+            int jogada2 = scanner.nextInt();
             
+            Jogada primeiraJogada = Jogada.comValor(jogada1);
+            Jogada segundaJogada = Jogada.comValor(jogada2);
+            
+            if(primeiraJogada == null || segundaJogada == null) {
+            	System.out.println("Jogada inválida!");
+            	continue;
+            }
+                                  
          	Jogo jogo = new Jogo();
-         	resultado = jogo.executar(jogada1, jogada2);
-
-            System.out.println(resultado);            
-
-        } while(resultado == "Jogada invalida!");
+         	resultado = jogo.executar(primeiraJogada, segundaJogada);
+         	
+         	String mensagem = montaMensagem(resultado, primeiraJogada, segundaJogada);
+         	System.out.println(mensagem);       
+         	
+        } while(resultado != null);
         
         scanner.close();
 
     }
 
+	public static String montaMensagem(Resultado resultado, Jogada primeiraJogada, Jogada segundaJogada) {
+		
+		switch(resultado) {
+
+	 		case EMPATE:
+	 			return "Empate";
+	 		case VITORIA:
+	 			return primeiraJogada +" venceu!";
+	 		case DERROTA:
+	 			return segundaJogada+" venceu!";
+	 		default:
+	 			return "Resultado inválido!";
+
+		}  
+	}
+	
     
 }

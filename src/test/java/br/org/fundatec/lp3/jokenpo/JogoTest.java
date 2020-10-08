@@ -11,15 +11,12 @@ public class JogoTest {
 		
 		//Cenario
 		Jogo jogo = new Jogo();
-		int jogada1 = 8;
-		int jogada2 = 1;
      	
 		//Execucao
-		String resultado = jogo.executar(jogada1, jogada2);
+		Resultado resultado = jogo.executar(null, null);
 				
 		//Validacao
-		String resultadoEsperado = "Jogada invalida!";
-     	assertEquals(resultadoEsperado, resultado);
+     	assertNull(resultado);
      	
 	}
 	
@@ -28,14 +25,12 @@ public class JogoTest {
 		
 		//Cenario
 		Jogo jogo = new Jogo();
-		int jogada1 = 1;
-		int jogada2 = 1;
      	
 		//Execucao
-		String resultado = jogo.executar(jogada1, jogada2);
+		Resultado resultado = jogo.executar(Jogada.PEDRA, Jogada.PEDRA);
 				
 		//Validacao
-		String resultadoEsperado = "Empate";
+		Resultado resultadoEsperado = Resultado.EMPATE;
      	assertEquals(resultadoEsperado, resultado);
      	
 	}
@@ -45,14 +40,12 @@ public class JogoTest {
 		
 		//Cenario
 		Jogo jogo = new Jogo();
-		int jogada1 = 0; //Pedra
-		int jogada2 = 1; //Papel
      	
 		//Execucao
-		String resultado = jogo.executar(jogada1, jogada2);
+		Resultado resultado = jogo.executar(Jogada.PEDRA, Jogada.PAPEL);
 				
 		//Validacao
-		String resultadoEsperado = "Papel venceu!";
+		Resultado resultadoEsperado = Resultado.DERROTA;
      	assertEquals(resultadoEsperado, resultado);
      	
 	}
@@ -62,14 +55,12 @@ public class JogoTest {
 		
 		//Cenario
 		Jogo jogo = new Jogo();
-		int jogada1 = 0; //Pedra
-		int jogada2 = 2; //Tesoura
      	
 		//Execucao
-		String resultado = jogo.executar(jogada1, jogada2);
+		Resultado resultado = jogo.executar(Jogada.PEDRA, Jogada.TESOURA);
 				
 		//Validacao
-		String resultadoEsperado = "Pedra venceu!";
+		Resultado resultadoEsperado = Resultado.VITORIA;
      	assertEquals(resultadoEsperado, resultado);
      	
 	}
@@ -79,14 +70,12 @@ public class JogoTest {
 		
 		//Cenario
 		Jogo jogo = new Jogo();
-		int jogada1 = 1; //papel
-		int jogada2 = 0; //Pedra
      	
 		//Execucao
-		String resultado = jogo.executar(jogada1, jogada2);
+		Resultado resultado = jogo.executar(Jogada.PAPEL, Jogada.PEDRA);
 				
 		//Validacao
-		String resultadoEsperado = "Papel venceu!";
+		Resultado resultadoEsperado = Resultado.VITORIA;
      	assertEquals(resultadoEsperado, resultado);
      	
 	}
@@ -96,14 +85,12 @@ public class JogoTest {
 		
 		//Cenario
 		Jogo jogo = new Jogo();
-		int jogada1 = 1; //Papel
-		int jogada2 = 2; //Tesoura
      	
 		//Execucao
-		String resultado = jogo.executar(jogada1, jogada2);
+		Resultado resultado = jogo.executar(Jogada.PAPEL, Jogada.TESOURA);
 				
 		//Validacao
-		String resultadoEsperado = "Tesoura venceu!";
+		Resultado resultadoEsperado = Resultado.DERROTA;
      	assertEquals(resultadoEsperado, resultado);
      	
 	}
@@ -113,14 +100,12 @@ public class JogoTest {
 		
 		//Cenario
 		Jogo jogo = new Jogo();
-		int jogada1 = 2; //Tesoura
-		int jogada2 = 0; //Pedra
      	
 		//Execucao
-		String resultado = jogo.executar(jogada1, jogada2);
+		Resultado resultado = jogo.executar(Jogada.TESOURA, Jogada.PEDRA);
 				
 		//Validacao
-		String resultadoEsperado = "Pedra venceu!";
+		Resultado resultadoEsperado = Resultado.DERROTA;
      	assertEquals(resultadoEsperado, resultado);
      	
 	}
@@ -130,14 +115,12 @@ public class JogoTest {
 		
 		//Cenario
 		Jogo jogo = new Jogo();
-		int jogada1 = 2; //Tesoura
-		int jogada2 = 1; //Papel
      	
 		//Execucao
-		String resultado = jogo.executar(jogada1, jogada2);
+		Resultado resultado = jogo.executar(Jogada.TESOURA, Jogada.PAPEL);
 				
 		//Validacao
-		String resultadoEsperado = "Tesoura venceu!";
+		Resultado resultadoEsperado = Resultado.VITORIA;
      	assertEquals(resultadoEsperado, resultado);
      	
 	}
